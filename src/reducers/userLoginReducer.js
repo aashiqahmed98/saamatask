@@ -4,7 +4,7 @@ import {
   FAIL_USER_DETAILS,
 } from '../constants/userConstants';
 
-export const loginReducer = (state = {}, action) => {
+export const loginReducer = (state = {success:false}, action) => {
   switch (action.type) {
     case REQUEST_USER_DETAILS:
       return {
