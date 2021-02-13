@@ -1,35 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import FormContainer from '../components/FormComponent';
 import { Form, Button } from 'react-bootstrap';
 import Message from '../components/MessageComponent';
+import Loader from '../components/Loader';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-const LoginScreen = () => {
+//actions
+import {getUsers} from '../actions/userloginAction'
+
+const LoginScreen = ({history}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [users, setUsers] = useState([]);
-  const [error, setError] = useState('');
+
+  const dispatch = useDispatch();
+
+  const user = useSelector(state => state.userLogin);
+  const { loading, error, success } = user;
 
   const submitHandler = e => {
     e.preventDefault();
-    users.map(user =>
-      user.email !== email
-        ? setError('User Not Found')
-        : user.password === password
-        ? console.log('cool')
-        : setError('Wrong Password')
-    );
+    dispatch(getUsers(email, password));
   };
 
   useEffect(() => {
-    fetch(`http://localhost:3000/data/users.json`)
-      .then(data => data.json())
-      .then(users => setUsers(users));
-  }, []);
+    if (success) {
+      history.push('/home');
+    }
+  }, [success,history]);
 
   return (
     <FormContainer>
       <h1 style={{ textAlign: 'center' }}>Sign In</h1>
       {error && <Message variant='danger'>{error}</Message>}
+      {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='email'>
           <Form.Label>Email Address</Form.Label>
