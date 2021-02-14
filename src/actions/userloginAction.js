@@ -2,6 +2,7 @@ import {
   REQUEST_USER_DETAILS,
   SUCCESS_USER_DETAILS,
   FAIL_USER_DETAILS,
+  LOGOUT_USER
 } from '../constants/userConstants';
 import axios from 'axios';
 
@@ -30,3 +31,7 @@ export const getUsers = (email, password) => async dispatch => {
   }
   }
   };
+
+  export const logoutUser=()=>dispatch=>{
+    dispatch({type:LOGOUT_USER})
+  }

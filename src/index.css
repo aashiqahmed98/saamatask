@@ -1,3 +1,7 @@
+body{
+  width: 100vw;
+  height: 100vh;
+}
 
 h3 {
   padding: 1rem 0;
@@ -39,4 +43,8 @@ h2 {
   font-size: 1.4rem;
   cursor: pointer;
   color:violet;
+}
+.goBack{
+  display: inline-block;
+  margin-left: 0.5rem;
 }

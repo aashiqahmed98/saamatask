@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from 'react-redux';
 //actions
 import { addToCart,removeFromCart } from '../actions/cartActions';
 
-const CartScreen = ({ match,location }) => {
+const CartScreen = ({ match,location ,history}) => {
   const dispatch = useDispatch();
 
   const productId = match.params.id;
@@ -26,6 +26,9 @@ const CartScreen = ({ match,location }) => {
 
   const cart = useSelector(state => state.cart);
   const { cartItems } = cart;
+
+  const user = useSelector(state => state.userLogin);
+  const {  isLogOut  } = user;
 
   const removeFromCartHandler = id => {
     dispatch(removeFromCart(id));
@@ -40,6 +43,12 @@ const checkOutHandler=()=>{
     }
   }, [dispatch, productId,qty]);
 
+  useEffect(() => {
+      if(isLogOut){
+          history.push('/')
+      }
+  }, [isLogOut])
+
   return (
     <>
       <Header />
@@ -49,9 +58,11 @@ const checkOutHandler=()=>{
               <h1>Shopping Cart</h1>
               {cartItems.length === 0 ? (
                 <Message>
-                  Your Cart is Empty <Link to='/home'><span className='backLink'>Go Back</span></Link>
+                  Your Cart is Empty <Link to='/home'><span className='backLink'>Continue Shopping...</span></Link>
                 </Message>
               ) : (
+                  <>
+                <Button variant="light" onClick={()=>{history.push(`/home`)}}><i class="fas fa-chevron-left"></i>{''}<span className='goBack'>GO BACK</span></Button> 
                 <ListGroup variant='flush'>
                   {cartItems.map(item => (
                     <ListGroup.Item key={item.id}>
@@ -84,7 +95,7 @@ const checkOutHandler=()=>{
                         <Col md={2}>
                           <Button
                             type='button'
-                            variant='light'
+                            variant='link'
                             onClick={() => removeFromCartHandler(item.id)}
                           >
                             <i className='fas fa-trash'></i>
@@ -94,6 +105,7 @@ const checkOutHandler=()=>{
                     </ListGroup.Item>
                   ))}
                 </ListGroup>
+                </>
               )}
             </Col>
             <Col md={4}>

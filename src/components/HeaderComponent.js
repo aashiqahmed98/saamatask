@@ -1,21 +1,34 @@
 import { Navbar, Nav } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-// import { useDispatch, useSelector } from 'react-redux';
+import {useDispatch} from 'react-redux' 
 
-const Header = ({ history }) => {
+//actions
+import {logoutUser} from '../actions/userloginAction'
+
+
+const Header = () => {
+  const dispatch = useDispatch()
+
+  const logoutHandler=()=>{
+      dispatch(logoutUser())
+  }
+
   return (
-    <header>
-      <Navbar collapseOnSelect bg='dark' variant='dark' expand='lg'>
-        <LinkContainer to='/'>
+    <header style={{position:'sticky',top:'0',zIndex:'100'}}>
+      <Navbar collapseOnSelect bg='dark' variant='dark' expand='lg' className='fixed-top'>
+        <LinkContainer to='/home'>
           <Navbar.Brand>Super Shop</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>
           <Nav className='ml-auto'>
-            <Nav.Link>
-              <i className='fas fa-shopping-cart'> Cart</i>
-            </Nav.Link>
-            <Nav.Link>Logout</Nav.Link>
+           
+            <LinkContainer to='/cart'>
+              <Nav.Link>
+                <i className='fas fa-shopping-cart'> Cart</i>
+              </Nav.Link>
+            </LinkContainer>
+            <Nav.Link onClick={logoutHandler}>Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
