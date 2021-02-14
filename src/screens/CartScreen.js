@@ -73,7 +73,7 @@ const checkOutHandler=()=>{
                         <Col md={3}>
                           {item.name}
                         </Col>
-                        <Col md={2}>${item.price}</Col>
+                        <Col md={2}>₹{item.price}</Col>
                         <Col md={3}>
                           <Form.Control
                             as='select'
@@ -116,7 +116,7 @@ const checkOutHandler=()=>{
                       Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}
                       ) ITEMS
                     </h2>
-                    $
+                    ₹
                     {cartItems
                       .reduce((acc, item) => acc + item.qty * item.price, 0)
                       .toFixed(2)}

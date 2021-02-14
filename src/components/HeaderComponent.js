@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <header style={{position:'sticky',top:'0',zIndex:'100'}}>
-      <Navbar collapseOnSelect bg='dark' variant='dark' expand='lg' className='fixed-top'>
+      <Navbar collapseOnSelect bg='dark' variant='dark' expand='lg'>
         <LinkContainer to='/home'>
           <Navbar.Brand>Super Shop</Navbar.Brand>
         </LinkContainer>

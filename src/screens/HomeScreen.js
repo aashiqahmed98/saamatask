@@ -30,15 +30,15 @@ const HomeScreen = ({history}) => {
 
   return (
     <>
-      <Header/>
+      <Header />
       {loadingProducts ? (
         <Loader />
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
-        <Table striped bordered  className='mt-3' responsive>
-          <thead>
-            <tr>
+        <Table bordered className='mt-3 border border-dark producttable' responsive>
+          <thead className='bg-info text-white'>
+            <tr className='text-center font-weight-bold'>
               <th>Picture</th>
               <th>Name</th>
               <th>Rating</th>
@@ -49,15 +49,18 @@ const HomeScreen = ({history}) => {
           <tbody>
             {productDetails.map(product => (
               <tr key={product.id}>
-                <td>
+                <td className='text-center'>
                   <img
                     src={product.image}
-                    className='productImage'
+                    className='productImage rounded shadow-sm'
                     alt={product.name}
                   />
                 </td>
-                <td>{product.name}</td>
-                <td>
+                <td className='text-center'>
+                    <p>{product.name}
+                    </p>
+                </td>
+                <td className='text-center'>
                   {Array.from({ length: 5 }, (_, index) => (
                     <span key={index}>
                       <i
@@ -73,19 +76,20 @@ const HomeScreen = ({history}) => {
                     </span>
                   ))}
                 </td>
-                <td>$ {product.price}</td>
-                <td>
+                <td className='text-center'>₹ {product.price}</td>
+                <td  className='text-center'>
                   {product.countInStock > 0 ? (
-                      <Button
+                    <Button
                       variant='primary'
                       onClick={() => {
-                        history.push(`/cart/${product.id}?qty=1`);
+                        history.push(`/cart/₹{product.id}?qty=1`);
                       }}
                     >
-                      <i className='fas fa-cart-plus'></i> {''}<span>BUY NOW</span>
+                      <i className='fas fa-cart-plus'></i> {''}
+                      <span>BUY NOW</span>
                     </Button>
                   ) : (
-                    <h4>Out of Stock</h4>
+                    <h4 className='alert alert-danger text-center small'>Out of Stock</h4>
                   )}
                 </td>
               </tr>
