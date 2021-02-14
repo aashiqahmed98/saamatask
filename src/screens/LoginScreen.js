@@ -4,7 +4,6 @@ import { Form, Button } from 'react-bootstrap';
 import Message from '../components/MessageComponent';
 import Loader from '../components/Loader';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 //actions
 import {getUsers} from '../actions/userloginAction'

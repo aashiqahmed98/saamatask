@@ -19,3 +19,6 @@ h2 {
   display: block !important;
   margin: 0 auto !important;
 }
+.navbar-brand{
+  margin-left: 2rem !important;
+}

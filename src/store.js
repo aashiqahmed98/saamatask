@@ -4,9 +4,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 //reducers
 import { loginReducer } from './reducers/userLoginReducer';
+import { getProductReducer } from './reducers/productReducers';
 
 const reducer = combineReducers({
-  userLogin:loginReducer,
+  userLogin: loginReducer,
+  products: getProductReducer,
 });
 
 const initialState = {};

@@ -11,7 +11,7 @@ export const loginReducer = (state = {success:false}, action) => {
         loading: true,
       };
     case SUCCESS_USER_DETAILS:
-      return { loading: false, success:true};
+      return { loading: false, success:true,isLogged:true};
     case FAIL_USER_DETAILS:
       return {loading:false, error: action.payload };
     default:
