@@ -47,7 +47,7 @@ const checkOutHandler=()=>{
       if(isLogOut){
           history.push('/')
       }
-  }, [isLogOut])
+  }, [isLogOut,history])
 
   return (
     <>

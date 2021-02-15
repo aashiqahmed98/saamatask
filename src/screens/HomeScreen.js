@@ -82,7 +82,7 @@ const HomeScreen = ({history}) => {
                     <Button
                       variant='primary'
                       onClick={() => {
-                        history.push(`/cart/₹{product.id}?qty=1`);
+                        history.push(`/cart/${product.id}?qty=1`);
                       }}
                     >
                       <i className='fas fa-cart-plus'></i> {''}
